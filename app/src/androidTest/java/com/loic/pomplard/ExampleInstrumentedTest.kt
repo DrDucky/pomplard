@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.loic.pomplarg", appContext.packageName)
+        assertEquals("com.loic.pomplard", appContext.packageName)
     }
 }
