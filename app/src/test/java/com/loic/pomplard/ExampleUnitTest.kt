@@ -1,4 +1,4 @@
-package com.loic.pomplarg
+package com.loic.pomplard
 
 import org.junit.Test
 

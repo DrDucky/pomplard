@@ -1,8 +1,8 @@
-package com.loic.pomplarg
+package com.loic.pomplard
 
 import android.os.Bundle
 import android.widget.Toast
-import com.loic.pomplarg.base.BaseActivity
+import com.loic.pomplard.base.BaseActivity
 
 class MainActivity : BaseActivity<MainActivityPresenterImpl>(), MainActivityPresenter.View{
 

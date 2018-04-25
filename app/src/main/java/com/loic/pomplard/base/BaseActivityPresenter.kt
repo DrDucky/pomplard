@@ -1,4 +1,4 @@
-package com.loic.pomplarg.base
+package com.loic.pomplard.base
 
 /**
  * Created by lmecatti on 25/04/2018.

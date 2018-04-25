@@ -1,4 +1,4 @@
-package com.loic.pomplarg.base
+package com.loic.pomplard.base
 
 import android.os.Bundle
 import android.os.PersistableBundle
