@@ -8,7 +8,7 @@ import com.loic.pomplard.base.BaseActivityPresenterImpl
 public class MainActivityPresenterImpl(val v: MainActivityPresenter.View) : BaseActivityPresenterImpl<MainActivityPresenter.View, Void>(), MainActivityPresenter.View {
 
     override fun doSomething() {
-        v?.doSomething()
+        v.doSomething()
     }
 
 }
