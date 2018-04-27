@@ -7,4 +7,10 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Menu Items -->
+    <string name="menu_gnr">GNR</string>
+    <string name="menu_fiche">Fiches</string>
+    <string name="menu_car">Vehicules</string>
+
 </resources>
