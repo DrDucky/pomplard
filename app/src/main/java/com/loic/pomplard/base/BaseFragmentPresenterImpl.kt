@@ -6,13 +6,12 @@ import java.lang.ref.WeakReference
 /**
  * Created by lmecatti on 25/04/2018.
  */
-open class BaseActivityPresenterImpl<V, S> : BaseActivityPresenter {
+open class BaseFragmentPresenterImpl<V, S> : BaseFragmentPresenter {
 
     protected lateinit var context: Context;
     protected var view: WeakReference<V>? = null
-    protected var presenterState: S? = null
 
-    protected fun BaseActivityPresenterImpl(context: Context) {
+    protected fun BaseFragmentPresenterImpl(context: Context) {
         this.context = context
     }
 
