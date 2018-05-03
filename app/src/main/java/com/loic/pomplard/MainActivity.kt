@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.loic.pomplard.base.BaseActivity
 import com.loic.pomplard.fiches.FicheFragment
+import com.loic.pomplard.fiches.GnrFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -68,15 +69,21 @@ class MainActivity : BaseActivity<MainActivityPresenterImpl>(), NavigationView.O
             R.id.nav_gnr -> {
                 val fragmentManager = supportFragmentManager
                 val ft = fragmentManager.beginTransaction()
-                val ficheFragment = FicheFragment().newInstance()
-                ft.replace(R.id.content_frame, ficheFragment)
+                val gnrFragment = GnrFragment().newInstance()
+                ft.replace(R.id.content_frame, gnrFragment)
                 ft.addToBackStack(null)
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 ft.commit()
 
             }
             R.id.nav_fiche -> {
-
+                val fragmentManager = supportFragmentManager
+                val ft = fragmentManager.beginTransaction()
+                val ficheFragment = FicheFragment().newInstance()
+                ft.replace(R.id.content_frame, ficheFragment)
+                ft.addToBackStack(null)
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                ft.commit()
             }
         }
 
