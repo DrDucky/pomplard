@@ -10,7 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.loic.pomplard.base.BaseActivity
 import com.loic.pomplard.fiches.FicheFragment
-import com.loic.pomplard.fiches.GnrFragment
+import com.loic.pomplard.gnr.GnrFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 

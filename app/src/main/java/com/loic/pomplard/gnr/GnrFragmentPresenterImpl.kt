@@ -1,15 +1,48 @@
-package com.loic.pomplard.fiches
+package com.loic.pomplard.gnr
 
-import android.widget.Toast
+import android.Manifest
+import android.os.Environment
+import android.util.Log
+import com.google.firebase.storage.FileDownloadTask
+import com.google.firebase.storage.FirebaseStorage
 import com.loic.pomplard.MainActivityPresenter
 import com.loic.pomplard.base.BaseFragmentPresenterImpl
+import ru.alexbykov.nopermission.PermissionHelper
+import java.io.File
 
 
-class GnrFragmentPresenterImpl(val v: GnrFragmentPresenter.View) : BaseFragmentPresenterImpl<MainActivityPresenter.View, Void>(), GnrFragmentPresenter.View {
+class GnrFragmentPresenterImpl(val v: GnrFragmentPresenter.View) : BaseFragmentPresenterImpl<MainActivityPresenter.View, Void>(), GnrFragmentPresenter {
 
-    override fun doSomethingWithGnr() {
-        v.doSomethingWithGnr()
+    private val TAG = GnrFragmentPresenterImpl::class.java.getName()
 
+    override fun checkPermission(fragment: GnrFragment) {
+        val permissionHelper = PermissionHelper(fragment)
+
+        permissionHelper.check(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .onSuccess(this::onSuccess)
+                .onDenied(this::onDenied)
+                .run();
     }
 
+    private fun onSuccess(){
+        v.onSuccessPermission()
+    }
+
+    private fun onDenied(){
+        v.ononDeniedPermission()
+    }
+
+    override fun doSomething() {
+
+        val file = File(Environment.getExternalStorageDirectory().path + File.separator + "Plompard" + File.separator, "gnrLot.pdf")
+
+        if(!file.exists()) {
+            file.parentFile.mkdirs()
+            file.createNewFile()
+        }
+        val storage = FirebaseStorage.getInstance()
+        val storageReference = storage.getReference()
+        val pdfFile = storageReference.child("GNR_lot_de_sauvetage_et_de_protection_contre_les_chutes.pdf")
+        pdfFile.getFile(file).addOnSuccessListener { taskSnapshot: FileDownloadTask.TaskSnapshot? -> v.doSomethingWithGnr(file) }
+    }
 }
