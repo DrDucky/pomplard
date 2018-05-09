@@ -31,7 +31,9 @@ class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresent
 
         val rootView = inflater.inflate(R.layout.fragment_gnr, container, false)
 
-        presenter?.checkPermission(this)
+        //DO CURRENTLY NOTHING.
+        //WORK IN PROGRESSS
+        //presenter?.checkPermission(this)
 
         return rootView
 
