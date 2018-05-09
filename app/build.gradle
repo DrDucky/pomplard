@@ -25,8 +25,9 @@ android {
 dependencies {
     ext {
         android_support_version = '27.1.1'
-        firebase_vesion = '15.0.2'
         nopermission_version = '1.1.2'
+        firebase_version = '15.0.2'
+        firebase_auth_version = '15.1.0'
     }
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -38,8 +39,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    api "com.google.firebase:firebase-core:$firebase_vesion"
-    api "com.google.firebase:firebase-storage:$firebase_vesion"
+    api "com.google.firebase:firebase-core:$firebase_version"
+    api "com.google.firebase:firebase-storage:$firebase_version"
+    implementation "com.google.firebase:firebase-auth:$firebase_auth_version"
+
 }
 
 apply plugin: 'com.google.gms.google-services'
