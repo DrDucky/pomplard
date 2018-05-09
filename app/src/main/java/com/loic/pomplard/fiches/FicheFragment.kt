@@ -1,6 +1,5 @@
 package com.loic.pomplard.fiches
 
-import android.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,13 +21,13 @@ class FicheFragment : BaseFragment<FicheFragmentPresenterImpl>(), FicheFragmentP
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        presenter?.doSomethingWithFiches()
+        presenter?.viewReady()
 
         return super.onCreateView(inflater, container, savedInstanceState)
 
     }
 
-    override fun doSomethingWithFiches() {
+    override fun showToast() {
         Toast.makeText(activity, "lala", Toast.LENGTH_LONG).show()
     }
 
