@@ -7,15 +7,22 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.content.FileProvider
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.loic.pomplard.R
 import com.loic.pomplard.base.BaseFragment
+import com.loic.pomplard.gnr.models.Gnr
 import java.io.File
+import kotlinx.android.synthetic.main.fragment_gnr.*
+import kotlinx.android.synthetic.main.fragment_gnr.view.*
+
 
 class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresenter.View {
+
+    val gnrList = mutableListOf<Gnr>()
 
     fun newInstance(): GnrFragment {
         return GnrFragment()
@@ -30,10 +37,17 @@ class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresent
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val rootView = inflater.inflate(R.layout.fragment_gnr, container, false)
+        val gnrLSPCC = Gnr("GNR LSPCC")
+        val gnrARI = Gnr("GNR ARI")
 
+        gnrList += gnrLSPCC
+        gnrList += gnrARI
+
+        rootView.rv_gnr.setLayoutManager(LinearLayoutManager(context))
+        rootView.rv_gnr.adapter = GnrAdapter(gnrList)
         //DO CURRENTLY NOTHING.
         //WORK IN PROGRESSS
-        //presenter?.checkPermission(this)
+        //presenter?.viewReady(this)
 
         return rootView
 
@@ -59,10 +73,10 @@ class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresent
     }
 
     override fun onSuccessPermission() {
-        presenter?.doSomething()
+        presenter?.getLspccPdf()
     }
 
-    override fun ononDeniedPermission() {
+    override fun onDeniedPermission() {
         Toast.makeText(activity, "Permission needed ! ", Toast.LENGTH_LONG).show()
     }
 

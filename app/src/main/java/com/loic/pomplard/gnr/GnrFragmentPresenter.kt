@@ -5,13 +5,13 @@ import java.io.File
 
 interface GnrFragmentPresenter {
 
-    fun checkPermission(fragment: GnrFragment)
+    fun viewReady(fragment: GnrFragment)
 
-    fun doSomething()
+    fun getLspccPdf()
 
     interface View {
         fun onSuccessPermission()
-        fun ononDeniedPermission()
+        fun onDeniedPermission()
         fun doSomethingWithGnr(file: File)
     }
 }

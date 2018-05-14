@@ -2,7 +2,6 @@ package com.loic.pomplard.gnr
 
 import android.Manifest
 import android.os.Environment
-import android.util.Log
 import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
 import com.loic.pomplard.MainActivityPresenter
@@ -15,7 +14,11 @@ class GnrFragmentPresenterImpl(val v: GnrFragmentPresenter.View) : BaseFragmentP
 
     private val TAG = GnrFragmentPresenterImpl::class.java.getName()
 
-    override fun checkPermission(fragment: GnrFragment) {
+    override fun viewReady(fragment: GnrFragment) {
+        checkPermission(fragment)
+    }
+
+    fun checkPermission(fragment: GnrFragment) {
         val permissionHelper = PermissionHelper(fragment)
 
         permissionHelper.check(Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -29,20 +32,20 @@ class GnrFragmentPresenterImpl(val v: GnrFragmentPresenter.View) : BaseFragmentP
     }
 
     private fun onDenied(){
-        v.ononDeniedPermission()
+        v.onDeniedPermission()
     }
 
-    override fun doSomething() {
+    override fun getLspccPdf() {
 
-        val file = File(Environment.getExternalStorageDirectory().path + File.separator + "Plompard" + File.separator, "gnrLot.pdf")
+        val internalFile = File(Environment.getExternalStorageDirectory().path + File.separator + "Plompard" + File.separator, "gnrLSPCC.pdf")
 
-        if(!file.exists()) {
-            file.parentFile.mkdirs()
-            file.createNewFile()
+        if(!internalFile.exists()) {
+            internalFile.parentFile.mkdirs()
+            internalFile.createNewFile()
         }
         val storage = FirebaseStorage.getInstance()
         val storageReference = storage.getReference()
         val pdfFile = storageReference.child("GNR_lot_de_sauvetage_et_de_protection_contre_les_chutes.pdf")
-        pdfFile.getFile(file).addOnSuccessListener { taskSnapshot: FileDownloadTask.TaskSnapshot? -> v.doSomethingWithGnr(file) }
+        pdfFile.getFile(internalFile).addOnSuccessListener { taskSnapshot: FileDownloadTask.TaskSnapshot? -> v.doSomethingWithGnr(internalFile) }
     }
 }
