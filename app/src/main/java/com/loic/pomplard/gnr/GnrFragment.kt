@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.content.FileProvider
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -43,7 +44,7 @@ class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresent
         gnrList += gnrLSPCC
         gnrList += gnrARI
 
-        rootView.rv_gnr.setLayoutManager(LinearLayoutManager(context))
+        rootView.rv_gnr.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
         rootView.rv_gnr.adapter = GnrAdapter(gnrList)
         //DO CURRENTLY NOTHING.
         //WORK IN PROGRESSS
