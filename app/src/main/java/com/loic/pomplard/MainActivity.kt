@@ -1,11 +1,9 @@
 package com.loic.pomplard
 
 import android.os.Bundle
-import android.support.design.widget.NavigationView
+import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.Snackbar
 import android.support.v4.app.FragmentTransaction
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.ActionBarDrawerToggle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -17,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 
-class MainActivity : BaseActivity<MainActivityPresenterImpl>(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity<MainActivityPresenterImpl>(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     lateinit var mAuth: FirebaseAuth
     private val TAG = MainActivity::class.java.getSimpleName()
@@ -32,29 +30,16 @@ class MainActivity : BaseActivity<MainActivityPresenterImpl>(), NavigationView.O
                     .setAction("Action", null).show()
         }
 
-        val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer_layout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        nav_view.setNavigationItemSelectedListener(this)
-        nav_view.setCheckedItem(R.id.nav_gnr) //Check the first item in navigation Drawer
+        bottom_navigation.setOnNavigationItemSelectedListener(this)
+        bottom_navigation.selectedItemId = R.id.nav_gnr //Check the first item in navigation Drawer
         if (savedInstanceState == null) {
-            nav_view.getMenu().performIdentifierAction(R.id.nav_gnr, 0); //Launch the first fragment when starting application
+            bottom_navigation.getMenu().performIdentifierAction(R.id.nav_gnr, 0); //Launch the first fragment when starting application
         }
 
         //Initialisation Authentication Firebase
         mAuth = FirebaseAuth.getInstance()
         signInAnonymously()
 
-    }
-
-    override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -97,7 +82,6 @@ class MainActivity : BaseActivity<MainActivityPresenterImpl>(), NavigationView.O
             }
         }
 
-        drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
 
