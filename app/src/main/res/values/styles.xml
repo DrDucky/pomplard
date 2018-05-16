@@ -8,7 +8,7 @@
 
         <item name="colorSecondary">@color/secondaryColor</item>
         <item name="colorSecondaryDark">@color/secondaryDarkColor</item>
-        
+
     </style>
 
     <style name="AppTheme.NoActionBar">
