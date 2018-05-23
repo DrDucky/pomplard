@@ -9,20 +9,19 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.loic.pomplard.R
 import com.loic.pomplard.base.BaseFragment
+import com.loic.pomplard.constants.FilesConstants
 import com.loic.pomplard.gnr.models.Gnr
 import java.io.File
-import kotlinx.android.synthetic.main.fragment_gnr.*
 import kotlinx.android.synthetic.main.fragment_gnr.view.*
 
 
-class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresenter.View {
+class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresenter.View, GnrListener {
 
     val gnrList = mutableListOf<Gnr>()
 
@@ -39,23 +38,25 @@ class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresent
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val rootView = inflater.inflate(R.layout.fragment_gnr, container, false)
-        val gnrLSPCC = Gnr("GNR LSPCC", ContextCompat.getDrawable(this.context!!, R.drawable.lspcc_thumbnail)!!)
-        val gnrARI = Gnr("GNR ARI", ContextCompat.getDrawable(this.context!!, R.drawable.lspcc_thumbnail)!!)
+        val gnrLSPCC = Gnr("GNR LSPCC",
+                ContextCompat.getDrawable(this.context!!, R.drawable.lspcc_thumbnail)!!,
+                FilesConstants.LSPCC_NAME)
+
+        val gnrARI = Gnr("GNR ARI",
+                ContextCompat.getDrawable(this.context!!, R.drawable.ari_thumbnail)!!,
+                FilesConstants.ARI_NAME)
 
         gnrList += gnrLSPCC
         gnrList += gnrARI
 
         rootView.rv_gnr.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
-        rootView.rv_gnr.adapter = GnrAdapter(gnrList)
-        //DO CURRENTLY NOTHING.
-        //WORK IN PROGRESSS
-        //presenter?.viewReady(this)
+        rootView.rv_gnr.adapter = GnrAdapter(gnrList, this)
 
         return rootView
 
     }
 
-    override fun doSomethingWithGnr(file:File) {
+    override fun downloadGnr(file:File) {
         Toast.makeText(activity, "gnr : " + file.name, Toast.LENGTH_LONG).show()
 
         val intent =  Intent(Intent.ACTION_VIEW);
@@ -75,11 +76,14 @@ class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresent
     }
 
     override fun onSuccessPermission() {
-        presenter?.getLspccPdf()
+        presenter?.getGnrPdf()
     }
 
     override fun onDeniedPermission() {
-        Toast.makeText(activity, "Permission needed ! ", Toast.LENGTH_LONG).show()
+        Toast.makeText(activity, getString(R.string.permission_denied), Toast.LENGTH_LONG).show()
     }
+
+    override fun onItemClickListener(gnr: Gnr) {
+        presenter?.viewReady(this, gnr)    }
 
 }

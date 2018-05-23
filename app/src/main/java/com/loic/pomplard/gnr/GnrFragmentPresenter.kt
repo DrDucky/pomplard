@@ -1,17 +1,18 @@
 package com.loic.pomplard.gnr
 
 import android.content.Context
+import com.loic.pomplard.gnr.models.Gnr
 import java.io.File
 
 interface GnrFragmentPresenter {
 
-    fun viewReady(fragment: GnrFragment)
+    fun viewReady(fragment: GnrFragment, gnr: Gnr)
 
-    fun getLspccPdf()
+    fun getGnrPdf()
 
     interface View {
         fun onSuccessPermission()
         fun onDeniedPermission()
-        fun doSomethingWithGnr(file: File)
+        fun downloadGnr(file: File)
     }
 }

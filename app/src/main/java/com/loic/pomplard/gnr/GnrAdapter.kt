@@ -9,7 +9,7 @@ import com.loic.pomplard.R
 import kotlinx.android.synthetic.main.item_gnr.view.*
 
 
-class GnrAdapter(val gnrList: List<Gnr>) : RecyclerView.Adapter<GnrViewHolder>() {
+class GnrAdapter(val gnrList: List<Gnr>, val listener: GnrListener) : RecyclerView.Adapter<GnrViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GnrViewHolder {
         val view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_gnr, parent, false)
@@ -23,6 +23,9 @@ class GnrAdapter(val gnrList: List<Gnr>) : RecyclerView.Adapter<GnrViewHolder>()
     override fun onBindViewHolder(holder: GnrViewHolder, position: Int) {
         val gnr : Gnr = gnrList.get(position)
         holder.bind(gnr)
+        holder.itemView.setOnClickListener({
+            listener.onItemClickListener(gnr)
+        })
     }
 
 }

@@ -4,4 +4,5 @@ import android.graphics.drawable.Drawable
 
 data class Gnr(
         val title: String = "",
-        val image: Drawable)
+        val image: Drawable,
+        val srcPdf: String = "")

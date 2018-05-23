@@ -6,6 +6,8 @@ import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
 import com.loic.pomplard.MainActivityPresenter
 import com.loic.pomplard.base.BaseFragmentPresenterImpl
+import com.loic.pomplard.constants.FilesConstants
+import com.loic.pomplard.gnr.models.Gnr
 import ru.alexbykov.nopermission.PermissionHelper
 import java.io.File
 
@@ -13,9 +15,12 @@ import java.io.File
 class GnrFragmentPresenterImpl(val v: GnrFragmentPresenter.View) : BaseFragmentPresenterImpl<MainActivityPresenter.View, Void>(), GnrFragmentPresenter {
 
     private val TAG = GnrFragmentPresenterImpl::class.java.getName()
+    lateinit var gnrSelected:Gnr
 
-    override fun viewReady(fragment: GnrFragment) {
+    override fun viewReady(fragment: GnrFragment, gnr:Gnr) {
+        this.gnrSelected = gnr
         checkPermission(fragment)
+
     }
 
     fun checkPermission(fragment: GnrFragment) {
@@ -35,17 +40,17 @@ class GnrFragmentPresenterImpl(val v: GnrFragmentPresenter.View) : BaseFragmentP
         v.onDeniedPermission()
     }
 
-    override fun getLspccPdf() {
+    override fun getGnrPdf() {
 
-        val internalFile = File(Environment.getExternalStorageDirectory().path + File.separator + "Plompard" + File.separator, "gnrLSPCC.pdf")
+        val localGnr = File(Environment.getExternalStorageDirectory().path + File.separator + FilesConstants.APP_LOCAL_DIRECTORY + File.separator, gnrSelected.srcPdf + FilesConstants.PDF_EXTENSION)
 
-        if(!internalFile.exists()) {
-            internalFile.parentFile.mkdirs()
-            internalFile.createNewFile()
+        if(!localGnr.exists()) {
+            localGnr.parentFile.mkdirs()
+            localGnr.createNewFile()
         }
         val storage = FirebaseStorage.getInstance()
         val storageReference = storage.getReference()
-        val pdfFile = storageReference.child("GNR_lot_de_sauvetage_et_de_protection_contre_les_chutes.pdf")
-        pdfFile.getFile(internalFile).addOnSuccessListener { taskSnapshot: FileDownloadTask.TaskSnapshot? -> v.doSomethingWithGnr(internalFile) }
+        val pdfFile = storageReference.child(gnrSelected.srcPdf + FilesConstants.PDF_EXTENSION)
+        pdfFile.getFile(localGnr).addOnSuccessListener { taskSnapshot: FileDownloadTask.TaskSnapshot? -> v.downloadGnr(localGnr) }
     }
 }

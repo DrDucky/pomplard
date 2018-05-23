@@ -13,4 +13,7 @@
     <string name="menu_fiche">Fiches</string>
     <string name="menu_car">Vehicules</string>
 
+    <!-- Error Messages -->
+    <string name="permission_denied">La permission est nécessaire pour pouvoir télécharger localement les fichiers</string>
+
 </resources>
