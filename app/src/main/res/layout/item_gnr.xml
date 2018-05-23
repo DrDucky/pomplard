@@ -8,17 +8,25 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="70dp"
-        app:contentPadding="16dp"
-        app:cardBackgroundColor="?attr/colorPrimaryDark"
+        app:cardBackgroundColor="#fafafa"
         app:cardCornerRadius="4dp"
         >
 
+    <ImageView
+            android:id="@+id/gnr_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cropToPadding="true"
+            android:layout_gravity="top"
+            android:adjustViewBounds="true" />
 
     <TextView
             android:id="@+id/gnr_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            tools:text="TITRE DU GNR"/>
+            android:layout_gravity="bottom"
+            style="@style/ListTitle"
+            android:padding="10dp"
+            tools:text="@tools:sample/cities"/>
 
 </android.support.design.card.MaterialCardView>

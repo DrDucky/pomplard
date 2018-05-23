@@ -31,5 +31,6 @@ class GnrViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(gnrObject: Gnr) {
         itemView.gnr_title.setText(gnrObject.title)
+        itemView.gnr_image.setImageDrawable(gnrObject.image)
     }
 }

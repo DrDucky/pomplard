@@ -6,6 +6,7 @@ import android.content.Intent.FLAG_GRANT_WRITE_URI_PERMISSION
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -38,8 +39,8 @@ class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresent
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val rootView = inflater.inflate(R.layout.fragment_gnr, container, false)
-        val gnrLSPCC = Gnr("GNR LSPCC")
-        val gnrARI = Gnr("GNR ARI")
+        val gnrLSPCC = Gnr("GNR LSPCC", ContextCompat.getDrawable(this.context!!, R.drawable.lspcc_thumbnail)!!)
+        val gnrARI = Gnr("GNR ARI", ContextCompat.getDrawable(this.context!!, R.drawable.lspcc_thumbnail)!!)
 
         gnrList += gnrLSPCC
         gnrList += gnrARI

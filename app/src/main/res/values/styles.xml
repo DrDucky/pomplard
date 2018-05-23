@@ -20,4 +20,8 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="ListTitle" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/secondaryColor</item>
+        <item name="android:textSize">@dimen/textview_title</item>
+    </style>
 </resources>
