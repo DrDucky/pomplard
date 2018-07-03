@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import com.loic.pomplard.gnr.models.Gnr
 import android.view.LayoutInflater
 import com.loic.pomplard.R
+import com.loic.pomplard.constants.FilesConstants
+import com.loic.pomplard.utils.DataUtils
 import kotlinx.android.synthetic.main.item_gnr.view.*
 
 
@@ -22,8 +24,11 @@ class GnrAdapter(val gnrList: List<Gnr>, val listener: GnrListener) : RecyclerVi
 
     override fun onBindViewHolder(holder: GnrViewHolder, position: Int) {
         val gnr : Gnr = gnrList.get(position)
+
+        gnr.isInLocal = DataUtils.getLocalFile(gnr.srcPdf, FilesConstants.PDF_EXTENSION).exists()
+
         holder.bind(gnr)
-        holder.itemView.setOnClickListener({
+        holder.itemView.gnr_download.setOnClickListener({
             listener.onItemClickListener(gnr)
         })
     }
@@ -33,6 +38,11 @@ class GnrAdapter(val gnrList: List<Gnr>, val listener: GnrListener) : RecyclerVi
 class GnrViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(gnrObject: Gnr) {
+        if(gnrObject.isInLocal){
+            itemView.gnr_download.setText("Voir")
+        }else {
+            itemView.gnr_download.setText("Download")
+        }
         itemView.gnr_title.setText(gnrObject.title)
         itemView.gnr_image.setImageDrawable(gnrObject.image)
     }

@@ -17,6 +17,7 @@ import com.loic.pomplard.R
 import com.loic.pomplard.base.BaseFragment
 import com.loic.pomplard.constants.FilesConstants
 import com.loic.pomplard.gnr.models.Gnr
+import com.loic.pomplard.utils.DataUtils
 import java.io.File
 import kotlinx.android.synthetic.main.fragment_gnr.view.*
 
@@ -44,7 +45,8 @@ class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresent
 
         val gnrARI = Gnr("GNR ARI",
                 ContextCompat.getDrawable(this.context!!, R.drawable.ari_thumbnail)!!,
-                FilesConstants.ARI_NAME)
+                FilesConstants.ARI_NAME
+        )
 
         gnrList += gnrLSPCC
         gnrList += gnrARI
