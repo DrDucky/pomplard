@@ -9,24 +9,38 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="70dp"
         app:cardBackgroundColor="#fafafa"
-        app:cardCornerRadius="4dp"
-        >
+        app:cardCornerRadius="4dp">
 
-    <ImageView
-            android:id="@+id/gnr_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:cropToPadding="true"
-            android:layout_gravity="top"
-            android:adjustViewBounds="true" />
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-            android:id="@+id/gnr_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            style="@style/ListTitle"
-            android:padding="10dp"
-            tools:text="@tools:sample/cities"/>
+        <ImageView
+                android:id="@+id/gnr_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:cropToPadding="true"
+                android:adjustViewBounds="true"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+        <TextView
+                android:id="@+id/gnr_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ListTitle"
+                app:layout_constraintTop_toBottomOf="@id/gnr_image"
+                app:layout_constraintStart_toStartOf="parent"
+                android:padding="10dp"
+                tools:text="@tools:sample/cities" />
+
+        <android.support.design.button.MaterialButton
+                android:id="@+id/gnr_download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Download"/>
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.design.card.MaterialCardView>

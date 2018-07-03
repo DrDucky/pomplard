@@ -7,4 +7,6 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="textview_title">18sp</dimen>
+    <dimen name="textview_description">14sp</dimen>
+
 </resources>
