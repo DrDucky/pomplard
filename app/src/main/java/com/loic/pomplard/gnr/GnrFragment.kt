@@ -49,6 +49,14 @@ class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresent
 
     }
 
+    override fun onSuccessPermission() {
+        presenter?.getGnrPdf()
+    }
+
+    override fun onDeniedPermission() {
+        Toast.makeText(activity, getString(R.string.permission_denied), Toast.LENGTH_LONG).show()
+    }
+
     override fun downloadGnr(file:File) {
         Toast.makeText(activity, "gnr : " + file.name, Toast.LENGTH_LONG).show()
 
@@ -68,15 +76,8 @@ class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresent
         startActivity(intent);
     }
 
-    override fun onSuccessPermission() {
-        presenter?.getGnrPdf()
-    }
-
-    override fun onDeniedPermission() {
-        Toast.makeText(activity, getString(R.string.permission_denied), Toast.LENGTH_LONG).show()
-    }
-
     override fun onItemClickListener(gnr: Gnr) {
-        presenter?.viewReady(this, gnr)    }
+        presenter?.viewReady(this, gnr)
+    }
 
 }

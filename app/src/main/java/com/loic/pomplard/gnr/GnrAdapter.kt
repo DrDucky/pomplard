@@ -31,6 +31,10 @@ class GnrAdapter(val gnrList: List<Gnr>, val listener: GnrListener) : RecyclerVi
         holder.itemView.gnr_download.setOnClickListener({
             listener.onItemClickListener(gnr)
         })
+
+        holder.itemView.gnr_see.setOnClickListener({
+            listener.onItemClickListener(gnr) //Calling same method if download||see
+        })
     }
 
 }
@@ -39,9 +43,11 @@ class GnrViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(gnrObject: Gnr) {
         if(gnrObject.isInLocal){
-            itemView.gnr_download.setText("Voir")
+            itemView.gnr_download.visibility = View.GONE
+            itemView.gnr_see.visibility = View.VISIBLE
         }else {
-            itemView.gnr_download.setText("Download")
+            itemView.gnr_download.visibility = View.VISIBLE
+            itemView.gnr_see.visibility = View.GONE
         }
         itemView.gnr_title.setText(gnrObject.title)
         itemView.gnr_image.setImageDrawable(gnrObject.image)

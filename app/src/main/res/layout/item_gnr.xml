@@ -35,12 +35,22 @@
                 tools:text="@tools:sample/cities" />
 
         <android.support.design.button.MaterialButton
+                android:id="@+id/gnr_see"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/ic_open_in_new_white_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/btn_see"/>
+
+        <android.support.design.button.MaterialButton
                 android:id="@+id/gnr_download"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:icon="@drawable/ic_file_download_white_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="Download"/>
+                android:text="@string/btn_download"/>
 
     </android.support.constraint.ConstraintLayout>
 
