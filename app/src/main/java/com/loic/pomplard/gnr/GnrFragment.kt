@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.fragment_gnr.view.*
 
 class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresenter.View, GnrListener {
 
-    val gnrList = mutableListOf<Gnr>()
+    var gnrList = mutableListOf<Gnr>()
 
     fun newInstance(): GnrFragment {
         return GnrFragment()
@@ -39,17 +39,8 @@ class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresent
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val rootView = inflater.inflate(R.layout.fragment_gnr, container, false)
-        val gnrLSPCC = Gnr("GNR LSPCC",
-                ContextCompat.getDrawable(this.context!!, R.drawable.lspcc_thumbnail)!!,
-                FilesConstants.LSPCC_NAME)
 
-        val gnrARI = Gnr("GNR ARI",
-                ContextCompat.getDrawable(this.context!!, R.drawable.ari_thumbnail)!!,
-                FilesConstants.ARI_NAME
-        )
-
-        gnrList += gnrLSPCC
-        gnrList += gnrARI
+        gnrList = presenter!!.initGnrs(this.context!!)
 
         rootView.rv_gnr.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
         rootView.rv_gnr.adapter = GnrAdapter(gnrList, this)

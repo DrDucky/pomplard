@@ -8,6 +8,8 @@ interface GnrFragmentPresenter {
 
     fun viewReady(fragment: GnrFragment, gnr: Gnr)
 
+    fun initGnrs(context: Context): List<Gnr>
+
     fun getGnrPdf()
 
     interface View {

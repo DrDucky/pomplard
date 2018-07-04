@@ -1,10 +1,13 @@
 package com.loic.pomplard.gnr
 
 import android.Manifest
+import android.content.Context
 import android.os.Environment
+import android.support.v4.content.ContextCompat
 import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
 import com.loic.pomplard.MainActivityPresenter
+import com.loic.pomplard.R
 import com.loic.pomplard.base.BaseFragmentPresenterImpl
 import com.loic.pomplard.constants.FilesConstants
 import com.loic.pomplard.gnr.models.Gnr
@@ -21,6 +24,24 @@ class GnrFragmentPresenterImpl(val v: GnrFragmentPresenter.View) : BaseFragmentP
     override fun viewReady(fragment: GnrFragment, gnr:Gnr) {
         this.gnrSelected = gnr
         checkPermission(fragment)
+    }
+
+    override fun initGnrs( context: Context): MutableList<Gnr> {
+        val gnrList = mutableListOf<Gnr>()
+
+        val gnrLSPCC = Gnr("GNR LSPCC",
+                ContextCompat.getDrawable(context, R.drawable.lspcc_thumbnail)!!,
+                FilesConstants.LSPCC_NAME)
+
+        val gnrARI = Gnr("GNR ARI",
+                ContextCompat.getDrawable(context, R.drawable.ari_thumbnail)!!,
+                FilesConstants.ARI_NAME
+        )
+
+        gnrList += gnrLSPCC
+        gnrList += gnrARI
+
+        return gnrList
     }
 
     /**
