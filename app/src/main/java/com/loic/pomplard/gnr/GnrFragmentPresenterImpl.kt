@@ -29,17 +29,29 @@ class GnrFragmentPresenterImpl(val v: GnrFragmentPresenter.View) : BaseFragmentP
     override fun initGnrs( context: Context): MutableList<Gnr> {
         val gnrList = mutableListOf<Gnr>()
 
-        val gnrLSPCC = Gnr("GNR LSPCC",
+        val gnrLSPCC = Gnr(FilesConstants.LSPCC_TITLE,
                 ContextCompat.getDrawable(context, R.drawable.lspcc_thumbnail)!!,
                 FilesConstants.LSPCC_NAME)
 
-        val gnrARI = Gnr("GNR ARI",
+        val gnrARI = Gnr(FilesConstants.ARI_TITLE,
                 ContextCompat.getDrawable(context, R.drawable.ari_thumbnail)!!,
                 FilesConstants.ARI_NAME
         )
 
+        val gnrEFEGE = Gnr(FilesConstants.EF_EGE_TITLE,
+                ContextCompat.getDrawable(context, R.drawable.ef_ege_thumbnail)!!,
+                FilesConstants.EF_EGE_NAME
+        )
+
+        val gnrEtablissements = Gnr(FilesConstants.ETABLISSEMENTS_TITLE,
+                ContextCompat.getDrawable(context, R.drawable.etablissements_thumbnail)!!,
+                FilesConstants.ETABLISSEMENTS_NAME
+        )
+
         gnrList += gnrLSPCC
         gnrList += gnrARI
+        gnrList += gnrEFEGE
+        gnrList += gnrEtablissements
 
         return gnrList
     }
