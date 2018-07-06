@@ -25,6 +25,8 @@ import kotlinx.android.synthetic.main.fragment_gnr.view.*
 class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresenter.View, GnrListener {
 
     var gnrList = mutableListOf<Gnr>()
+    lateinit var gnrSelected:Gnr
+
 
     fun newInstance(): GnrFragment {
         return GnrFragment()
@@ -40,9 +42,11 @@ class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresent
 
         val rootView = inflater.inflate(R.layout.fragment_gnr, container, false)
 
-        gnrList = presenter!!.initGnrs(this.context!!)
+        presenter?.viewReady(this)
 
-        rootView.rv_gnr.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
+        gnrList = presenter!!.initGnrs(context!!)
+
+        rootView.rv_gnr.layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
         rootView.rv_gnr.adapter = GnrAdapter(gnrList, this)
 
         return rootView
@@ -50,7 +54,7 @@ class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresent
     }
 
     override fun onSuccessPermission() {
-        presenter?.getGnrPdf()
+        presenter!!.getGnrPdf(gnrSelected)
     }
 
     override fun onDeniedPermission() {
@@ -77,7 +81,8 @@ class GnrFragment : BaseFragment<GnrFragmentPresenterImpl>(), GnrFragmentPresent
     }
 
     override fun onItemClickListener(gnr: Gnr) {
-        presenter?.viewReady(this, gnr)
+        this.gnrSelected = gnr
+        presenter!!.checkPermission(this)
     }
 
 }

@@ -3,9 +3,10 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:cardBackgroundColor="#fafafa"
+        android:elevation="@dimen/card_elevation"
+        app:cardBackgroundColor="@color/cardview_initial_background"
         app:cardCornerRadius="4dp">
 
     <android.support.constraint.ConstraintLayout
@@ -15,38 +16,53 @@
 
         <ImageView
                 android:id="@+id/gnr_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
                 android:cropToPadding="true"
                 android:adjustViewBounds="true"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
         <TextView
                 android:id="@+id/gnr_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/ListTitle"
-                app:layout_constraintTop_toBottomOf="@id/gnr_image"
+                app:layout_constraintBottom_toBottomOf="@id/gnr_image"
                 app:layout_constraintStart_toStartOf="parent"
                 android:padding="10dp"
+                android:background="#50000000"
                 tools:text="@tools:sample/cities" />
 
-        <android.support.design.button.MaterialButton
-                android:id="@+id/gnr_see"
+        <TextView
+                android:id="@+id/gnr_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:icon="@drawable/ic_open_in_new_white_24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:text="@string/btn_see"/>
+                style="@style/ListDescription"
+                app:layout_constraintTop_toBottomOf="@id/gnr_title"
+                app:layout_constraintStart_toStartOf="parent"
+                android:padding="10dp"
+                tools:text="@tools:sample/lorem" />
 
         <android.support.design.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:id="@+id/gnr_open"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/gnr_description"
+                app:layout_constraintTop_toBottomOf="@id/gnr_description"
+                android:gravity="start"
+                android:text="@string/btn_open"/>
+
+        <android.support.design.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:id="@+id/gnr_download"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:icon="@drawable/ic_file_download_white_24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/gnr_description"
+                app:layout_constraintTop_toBottomOf="@id/gnr_description"
+                android:gravity="start"
                 android:text="@string/btn_download"/>
 
     </android.support.constraint.ConstraintLayout>

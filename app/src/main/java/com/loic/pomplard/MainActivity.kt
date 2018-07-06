@@ -25,11 +25,6 @@ class MainActivity : BaseActivity<MainActivityPresenterImpl>(), BottomNavigation
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
-
         bottom_navigation.setOnNavigationItemSelectedListener(this)
         bottom_navigation.selectedItemId = R.id.nav_gnr //Check the first item in navigation Drawer
         if (savedInstanceState == null) {

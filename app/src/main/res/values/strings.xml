@@ -14,8 +14,12 @@
     <string name="menu_car">Vehicules</string>
 
     <!-- GNR Files -->
-    <string name="btn_see">Voir</string>
+    <string name="btn_open">Ouvrir</string>
     <string name="btn_download">Télécharger</string>
+    <string name="lspcc_description">Lots de Sauvetage et de Protection contre les chutes</string>
+    <string name="ari_description">Appareils Respiratoires Isolants</string>
+    <string name="ef_ege_description">Explosion de Fumées - Embrasement Généralisé éclair</string>
+    <string name="etablissements_description">Etablissements des lances</string>
 
     <!-- Error Messages -->
     <string name="permission_denied">La permission est nécessaire pour pouvoir télécharger localement les fichiers</string>

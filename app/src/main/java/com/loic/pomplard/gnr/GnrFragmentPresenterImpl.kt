@@ -19,31 +19,34 @@ import java.io.File
 class GnrFragmentPresenterImpl(val v: GnrFragmentPresenter.View) : BaseFragmentPresenterImpl<MainActivityPresenter.View, Void>(), GnrFragmentPresenter {
 
     private val TAG = GnrFragmentPresenterImpl::class.java.getName()
-    lateinit var gnrSelected:Gnr
+    lateinit var fragment:GnrFragment
 
-    override fun viewReady(fragment: GnrFragment, gnr:Gnr) {
-        this.gnrSelected = gnr
-        checkPermission(fragment)
+    override fun viewReady(fragment: GnrFragment) {
+        this.fragment = fragment
     }
 
     override fun initGnrs( context: Context): MutableList<Gnr> {
         val gnrList = mutableListOf<Gnr>()
 
         val gnrLSPCC = Gnr(FilesConstants.LSPCC_TITLE,
+                fragment.getString(R.string.lspcc_description),
                 ContextCompat.getDrawable(context, R.drawable.lspcc_thumbnail)!!,
                 FilesConstants.LSPCC_NAME)
 
         val gnrARI = Gnr(FilesConstants.ARI_TITLE,
+                fragment.getString(R.string.ari_description),
                 ContextCompat.getDrawable(context, R.drawable.ari_thumbnail)!!,
                 FilesConstants.ARI_NAME
         )
 
         val gnrEFEGE = Gnr(FilesConstants.EF_EGE_TITLE,
+                fragment.getString(R.string.ef_ege_description),
                 ContextCompat.getDrawable(context, R.drawable.ef_ege_thumbnail)!!,
                 FilesConstants.EF_EGE_NAME
         )
 
         val gnrEtablissements = Gnr(FilesConstants.ETABLISSEMENTS_TITLE,
+                fragment.getString(R.string.etablissements_description),
                 ContextCompat.getDrawable(context, R.drawable.etablissements_thumbnail)!!,
                 FilesConstants.ETABLISSEMENTS_NAME
         )
@@ -79,7 +82,7 @@ class GnrFragmentPresenterImpl(val v: GnrFragmentPresenter.View) : BaseFragmentP
     /**
      * Retrieve the PDF file from Internet (Firebase) or locally.
      */
-    override fun getGnrPdf() {
+    override fun getGnrPdf(gnrSelected : Gnr) {
 
         val localGnr = DataUtils.getLocalFile(gnrSelected.srcPdf, FilesConstants.PDF_EXTENSION)
 

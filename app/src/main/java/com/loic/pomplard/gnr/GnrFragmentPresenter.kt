@@ -6,11 +6,11 @@ import java.io.File
 
 interface GnrFragmentPresenter {
 
-    fun viewReady(fragment: GnrFragment, gnr: Gnr)
+    fun viewReady(fragment: GnrFragment)
 
     fun initGnrs(context: Context): List<Gnr>
 
-    fun getGnrPdf()
+    fun getGnrPdf(gnrSelected : Gnr)
 
     interface View {
         fun onSuccessPermission()
