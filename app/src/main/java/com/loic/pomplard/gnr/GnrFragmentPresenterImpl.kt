@@ -25,28 +25,52 @@ class GnrFragmentPresenterImpl(val v: GnrFragmentPresenter.View) : BaseFragmentP
         this.fragment = fragment
     }
 
+    override fun filterCategories(checked: Boolean, filtersCategories: String, categorie: String) {
+        var filtersCategoriesTemp = filtersCategories
+
+        if(!filtersCategoriesTemp.isEmpty()){ //the previous all category should be remove
+            filtersCategoriesTemp = filtersCategoriesTemp.replace(FilesConstants.ALL_CATEGORY, "")
+        }
+
+        if(checked){
+            filtersCategoriesTemp += categorie //We had the category to the String
+        }else {
+            filtersCategoriesTemp = filtersCategoriesTemp.replace(categorie, "")
+
+            if(filtersCategoriesTemp.isEmpty()){ //If all chips are uncheck, we add the all_category tag to display all objects by default
+                filtersCategoriesTemp = FilesConstants.ALL_CATEGORY
+            }
+        }
+
+        v.filterCategories(filtersCategoriesTemp)
+    }
+
     override fun initGnrs( context: Context): MutableList<Gnr> {
         val gnrList = mutableListOf<Gnr>()
 
         val gnrLSPCC = Gnr(FilesConstants.LSPCC_TITLE,
                 fragment.getString(R.string.lspcc_description),
+                FilesConstants.OPERATIONNEL_CATEGORY,
                 ContextCompat.getDrawable(context, R.drawable.lspcc_thumbnail)!!,
                 FilesConstants.LSPCC_NAME)
 
         val gnrARI = Gnr(FilesConstants.ARI_TITLE,
                 fragment.getString(R.string.ari_description),
+                FilesConstants.SPECIALITES_CATEGORY,
                 ContextCompat.getDrawable(context, R.drawable.ari_thumbnail)!!,
                 FilesConstants.ARI_NAME
         )
 
         val gnrEFEGE = Gnr(FilesConstants.EF_EGE_TITLE,
                 fragment.getString(R.string.ef_ege_description),
+                FilesConstants.SPECIALITES_CATEGORY,
                 ContextCompat.getDrawable(context, R.drawable.ef_ege_thumbnail)!!,
                 FilesConstants.EF_EGE_NAME
         )
 
         val gnrEtablissements = Gnr(FilesConstants.ETABLISSEMENTS_TITLE,
                 fragment.getString(R.string.etablissements_description),
+                FilesConstants.OPERATIONNEL_CATEGORY,
                 ContextCompat.getDrawable(context, R.drawable.etablissements_thumbnail)!!,
                 FilesConstants.ETABLISSEMENTS_NAME
         )

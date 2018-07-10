@@ -12,6 +12,10 @@ object FilesConstants {
     const val EF_EGE_NAME = "GNR_EF_EGE"
     const val ETABLISSEMENTS_NAME = "GNR_etablissements"
 
+    const val ALL_CATEGORY = "CATEGORY_ALL;"
+    const val OPERATIONNEL_CATEGORY = "CATEGORY_OPERATIONNEL;"
+    const val SPECIALITES_CATEGORY = "CATEGORY_SPECIALITES;"
+
     const val APP_LOCAL_DIRECTORY = "Pomplard"
 
     const val PDF_EXTENSION = ".pdf"

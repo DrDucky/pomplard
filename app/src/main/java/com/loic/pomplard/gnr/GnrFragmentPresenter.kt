@@ -12,9 +12,16 @@ interface GnrFragmentPresenter {
 
     fun getGnrPdf(gnrSelected : Gnr)
 
+    /**
+     * filter on all GNRs with the specified category (ex: "Specialités" or "Operationnel")
+     * By default, all GNR are displays
+     */
+    fun filterCategories(checked: Boolean, filtersCategories: String, categorie: String)
+
     interface View {
         fun onSuccessPermission()
         fun onDeniedPermission()
+        fun filterCategories(pCategory: String)
         fun downloadGnr(file: File)
     }
 }

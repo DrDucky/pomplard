@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 data class Gnr(
         val title: String = "",
         val description: String = "",
+        val category: String = "",
         val image: Drawable,
         val srcPdf: String = "",
         var isInLocal: Boolean = false)
